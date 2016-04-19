@@ -1,0 +1,24 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "typler",
+    "password": "my2413",
+    "name": "mysql",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "mongo": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "database": "typler",
+    "password": "",
+    "name": "mongo",
+    "user": "",
+    "connector": "mongodb"
+  }
+}

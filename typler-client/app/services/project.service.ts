@@ -16,8 +16,8 @@ export class ProjectService {
     }
 
 
-    saveNewProject(data: any) {
-        const body = JSON.stringify(data);
+    saveNewProject(product: any) {
+        const body = JSON.stringify(product);
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
 

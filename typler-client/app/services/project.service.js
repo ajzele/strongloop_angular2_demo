@@ -31,8 +31,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     return this.http.get('http://0.0.0.0:3000/api/Projects')
                         .map(function (response) { return response.json(); });
                 };
-                ProjectService.prototype.saveNewProject = function (data) {
-                    var body = JSON.stringify(data);
+                ProjectService.prototype.saveNewProject = function (product) {
+                    var body = JSON.stringify(product);
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/json');
                     return this.http.post('http://0.0.0.0:3000/api/Projects', body, { headers: headers })

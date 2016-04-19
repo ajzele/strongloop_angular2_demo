@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../services/project.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../services/project.service', './project.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../services/project.service'], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, project_service_1;
+    var core_1, project_service_1, project_component_1;
     var ProjectsComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['angular2/core', '../services/project.service'], function(expor
             },
             function (project_service_1_1) {
                 project_service_1 = project_service_1_1;
+            },
+            function (project_component_1_1) {
+                project_component_1 = project_component_1_1;
             }],
         execute: function() {
             ProjectsComponent = (function () {
@@ -38,20 +41,16 @@ System.register(['angular2/core', '../services/project.service'], function(expor
                         console.log(error);
                     });
                 };
-                ProjectsComponent.prototype.saveProject = function (title, description) {
-                    var _this = this;
-                    this.projectService.saveNewProject({ title: title, description: description })
-                        .subscribe(function (data) {
-                        console.log(data);
-                        _this.reloadProjects();
-                    }, function (error) {
-                        console.log(error);
-                    });
+                ProjectsComponent.prototype.observerFor_saveProjectEvent = function (event) {
+                    console.log('start observerFor_saveProjectEvent');
+                    console.log(event);
+                    console.log('end observerFor_saveProjectEvent');
                 };
                 ProjectsComponent = __decorate([
                     core_1.Component({
                         selector: 'typler-projects',
-                        template: "\n        <h2>Categries</h2>\n        <input #name />\n        <input #description />\n        <button (click)=\"saveProject(name.value, description.value)\">Add</button>\n        <div *ngFor=\"#project of projects;\">\n            <span class=\"title\">{{project.title}}</span>\n            <span class=\"description\">{{project.description}}</span>\n        </div>\n    ",
+                        template: "\n        <h2>Categries</h2>\n        <div *ngFor=\"#project of projects;\">\n            <span class=\"title\">{{project.title}}</span>\n            <span class=\"description\">{{project.description}}</span>\n        </div>\n\n        <h2>Add new</h2>\n        <typler-project (saveProjectEvent)=\"observerFor_saveProjectEvent($event)\"></typler-project>\n\n    ",
+                        directives: [project_component_1.ProjectComponent],
                         providers: [project_service_1.ProjectService]
                     }), 
                     __metadata('design:paramtypes', [project_service_1.ProjectService])

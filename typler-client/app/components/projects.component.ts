@@ -2,19 +2,22 @@ import {Component} from 'angular2/core';
 import {OnInit} from 'angular2/core';
 import {Project} from '../models/project';
 import {ProjectService} from '../services/project.service';
+import {ProjectComponent} from './project.component';
 
 @Component({
     selector: 'typler-projects',
     template: `
         <h2>Categries</h2>
-        <input #name />
-        <input #description />
-        <button (click)="saveProject(name.value, description.value)">Add</button>
         <div *ngFor="#project of projects;">
             <span class="title">{{project.title}}</span>
             <span class="description">{{project.description}}</span>
         </div>
+
+        <h2>Add new</h2>
+        <typler-project (saveProjectEvent)="observerFor_saveProjectEvent($event)"></typler-project>
+
     `,
+    directives: [ProjectComponent],
     providers: [ProjectService]
 })
 export class ProjectsComponent implements OnInit {
@@ -39,17 +42,12 @@ export class ProjectsComponent implements OnInit {
             });
     }
 
-
-
-    saveProject(title, description) {
-        this.projectService.saveNewProject({title: title, description: description})
-            .subscribe(data => {
-                console.log(data);
-                this.reloadProjects();
-            }, error => {
-                console.log(error);
-            });
-
-
+    observerFor_saveProjectEvent(event)
+    {
+        console.log('start observerFor_saveProjectEvent');
+        console.log(event);
+        console.log('end observerFor_saveProjectEvent');
     }
+
+    // add event that triggers reloadProjects when child component typler-project creates new project
 }
